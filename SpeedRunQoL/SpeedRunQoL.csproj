@@ -40,6 +40,9 @@
     <Reference Include="DebugMod">
       <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\Mods\DebugMod\DebugMod.dll</HintPath>
     </Reference>
+    <Reference Include="MMHOOK_PlayMaker">
+      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\MMHOOK_PlayMaker.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -73,6 +76,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functionality\ColoGoldWaveChanger.cs" />
     <Compile Include="Functionality\ForceUumuuExtraAttack.cs" />
     <Compile Include="Functionality\PositionSaveState.cs" />
     <Compile Include="Functionality\VisualStateViewer.cs" />

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.ComponentModel.Design;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -189,9 +190,16 @@ namespace SpeedRunQoL
         }
         
                 //Team Cherry used a random password generator for these
-        [BindableMethod(name = "Toggle Godseeker Option", category = "Main Menu Storage")]
+        [BindableMethod(name = "Toggle Godseeker Option", category = "Main Menu Settings")]
         public static void ToggleGodseekerFileSelect()
         {
+            //Since i'm writing encrypted values I can't guarantee cross platform compatability
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == false)
+            {
+                Console.AddLine("This feature is only available on Windows");
+                return;
+            }
+
             if (Platform.Current && Platform.Current.SharedData.HasKey("CBTmnPLpdrC6/a8b6NVgIw=="))
             {
                 Platform.Current.SharedData.DeleteKey("CBTmnPLpdrC6/a8b6NVgIw==");
@@ -206,9 +214,15 @@ namespace SpeedRunQoL
             }
         }
 
-        [BindableMethod(name = "Toggle Steel Soul Option", category = "Main Menu Storage")]
+        [BindableMethod(name = "Toggle Steel Soul Option", category = "Main Menu Settings")]
         public static void ToggleSteelSoulSelect()
         {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == false)
+            {
+                Console.AddLine("This feature is only available on Windows");
+                return;
+            }
+
             if (Platform.Current && Platform.Current.SharedData.HasKey("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8="))
             {
                 Platform.Current.SharedData.DeleteKey("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8=");
@@ -224,10 +238,58 @@ namespace SpeedRunQoL
             }
         }
 
+        //Colo 3 Wave Presets, see ColoGoldWavechanger.cs
 
-        //Following functionality not supported yet because save quitting will cause the game to be unrunnable
+        [BindableMethod(name = "(0) Reset Waves (0)", category = "Colosseum 3")]
+        public static void Colo3Preset0()
+        {
+            ColoGoldWaveChanger.SetWavePreset(0);
+        }
+
+        [BindableMethod(name = "(1) Frogs 1", category = "Colosseum 3")]
+        public static void Colo3Preset1()
+        {
+            ColoGoldWaveChanger.SetWavePreset(1);
+        }
+
+        [BindableMethod(name = "(2) Sanctum Waves", category = "Colosseum 3")]
+        public static void Colo3Preset2()
+        {
+            ColoGoldWaveChanger.SetWavePreset(2);
+        }
+
+        [BindableMethod(name = "(3) Mawlurks", category = "Colosseum 3")]
+        public static void Colo3Preset3()
+        {
+            ColoGoldWaveChanger.SetWavePreset(3);
+        }
+
+        [BindableMethod(name = "(4) Floorless", category = "Colosseum 3")]
+        public static void Colo3Preset4()
+        {
+            ColoGoldWaveChanger.SetWavePreset(4);
+        }
+
+        [BindableMethod(name = "(5) Final Waves", category = "Colosseum 3")]
+        public static void Colo3Preset5()
+        {
+            ColoGoldWaveChanger.SetWavePreset(5);
+        }
+
+        [BindableMethod(name = "(6) GodTamer", category = "Colosseum 3")]
+        public static void Colo3Preset6()
+        {
+            ColoGoldWaveChanger.SetWavePreset(6);
+        }
+
+
+
+
+
+        //Following functionality not supported yet because save quitting will cause the game to be unrunnable, not to mentions its just useless
+        //In order for this to work, it needs to be called in the Main Menu, this gets overwritten immediately on SQ
         /*
-        [BindableMethod(name = "Toggle First File Options", category = "Main Menu Storage")]
+        [BindableMethod(name = "Toggle First File Options", category = "Main Menu Settings")]
         public static void ToggleFirstFileSelect()
         {
             if (Platform.Current && Platform.Current.SharedData.HasKey("VidOSSet") && Platform.Current.SharedData.HasKey("VidBrightSet"))
@@ -253,5 +315,6 @@ namespace SpeedRunQoL
             }
         }
         */
+
     }
 }

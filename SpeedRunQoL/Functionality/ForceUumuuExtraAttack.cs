@@ -30,7 +30,7 @@ namespace SpeedRunQoL.Functionality
                 fsmToggle = false;
             }
         }
-
+       
         private static string[] UumuuScenes = new[] {"Fungus3_archive_02"};
 
         private static void SetUumuuExtraAttack(Scene sceneFrom, Scene sceneTo) => SetUumuuExtraAttack(sceneTo.name);
