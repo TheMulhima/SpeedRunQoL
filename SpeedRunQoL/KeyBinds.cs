@@ -1,8 +1,11 @@
-﻿using System;
+using System;
 using System.Collections;
-using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Xml;
 using DebugMod;
 using DebugMod.Hitbox;
 using HutongGames.PlayMaker;
@@ -183,5 +186,71 @@ namespace SpeedRunQoL
         {
             Console.AddLine($"Current State is {VisualStateViewer.CurrentViewingState.ToString()}");
         }
+        
+                //Team Cherry used a random password generator for these
+        [BindableMethod(name = "Toggle Godseeker Option", category = "Main Menu Storage")]
+        public static void ToggleGodseekerFileSelect()
+        {
+            if (Platform.Current && Platform.Current.SharedData.HasKey("CBTmnPLpdrC6/a8b6NVgIw=="))
+            {
+                Platform.Current.SharedData.DeleteKey("CBTmnPLpdrC6/a8b6NVgIw==");
+                Platform.Current.SharedData.Save();
+                Console.AddLine("Deleted Godseeker");
+            }
+            else
+            {
+                Platform.Current.SharedData.SetString("CBTmnPLpdrC6/a8b6NVgIw==", "ez4OUKupVnBOq3vBeounJQ==");
+                Platform.Current.SharedData.Save();
+                Console.AddLine("Added Godseeker");
+            }
+        }
+
+        [BindableMethod(name = "Toggle Steel Soul Option", category = "Main Menu Storage")]
+        public static void ToggleSteelSoulSelect()
+        {
+            if (Platform.Current && Platform.Current.SharedData.HasKey("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8="))
+            {
+                Platform.Current.SharedData.DeleteKey("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8=");
+                Platform.Current.SharedData.Save();
+                Console.AddLine("Deleted Steel Soul");
+
+            }
+            else
+            {
+                Platform.Current.SharedData.SetString("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8=", "ez4OUKupVnBOq3vBeounJQ==");
+                Platform.Current.SharedData.Save();
+                Console.AddLine("Added Steel Soul");
+            }
+        }
+
+
+        //Following functionality not supported yet because save quitting will cause the game to be unrunnable
+        /*
+        [BindableMethod(name = "Toggle First File Options", category = "Main Menu Storage")]
+        public static void ToggleFirstFileSelect()
+        {
+            if (Platform.Current && Platform.Current.SharedData.HasKey("VidOSSet") && Platform.Current.SharedData.HasKey("VidBrightSet"))
+            {
+                Platform.Current.SharedData.DeleteKey("VIDOSSet");
+                Platform.Current.SharedData.DeleteKey("VidBrightSet");
+                Platform.Current.SharedData.Save();
+                Console.AddLine("Added First File Options");
+            }
+            else if (Platform.Current.SharedData.HasKey("VidOSSet") || Platform.Current.SharedData.HasKey("VidBrightSet"))
+            {
+                Console.AddLine("Incongruent Registry Values! No actions taken");
+                return;
+            }
+
+            else
+
+            {
+                Platform.Current.SharedData.SetInt("VidOSSet", 1);
+                Platform.Current.SharedData.SetInt("VidBrightSet", 1);
+                Platform.Current.SharedData.Save();
+                Console.AddLine("Removed First File Options");
+            }
+        }
+        */
     }
 }
