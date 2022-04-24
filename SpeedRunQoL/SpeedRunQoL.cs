@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.ComponentModel.Design;
 using System.Linq;
 using DebugMod;
 using Modding;
@@ -12,7 +13,7 @@ namespace SpeedRunQoL
     //debug doesnt do any of the dll loading so the mod needs to inherit from "Mod" so the modding api loads it
     public class SpeedRunQoL: Mod
     {
-        public override string GetVersion() => "v0.4";
+        public override string GetVersion() => "v0.5";
         internal static SpeedRunQoL instance { get; private set; }
         public override void Initialize()
         {
