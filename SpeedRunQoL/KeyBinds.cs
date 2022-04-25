@@ -193,47 +193,59 @@ namespace SpeedRunQoL
         public static void ToggleGodseekerFileSelect()
         {
             //Even with cleaner code I don't want to mess up cross platform stuff
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == false)
+            if (! RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Console.AddLine("This feature is only available on Windows");
                 return;
             }
 
-            if (Platform.Current && Platform.Current.EncryptedSharedData.HasKey("RecBossrushMode"))
+            if (Platform.Current)
             {
-                Platform.Current.EncryptedSharedData.DeleteKey("RecBossrushMode");
-                Platform.Current.EncryptedSharedData.Save();
-                Console.AddLine("Deleted Godseeker");
+                if (GameManager.instance.GetStatusRecordInt("RecBossRushMode") == 1)
+                {
+                    GameManager.instance.SetStatusRecordInt("RecBossRushMode", 0); ;
+                    Console.AddLine("Disabled Godseeker");
+                }
+
+                else
+                {
+                    GameManager.instance.SetStatusRecordInt("RecBossRushMode", 1);
+                    Console.AddLine("Added Godseeker");
+                }
+
+                GameManager.instance.SaveStatusRecords();
             }
+
             else
             {
-                GameManager.instance.SetStatusRecordInt("RecBossrushMode", 1);
-                Platform.Current.EncryptedSharedData.Save();
-                Console.AddLine("Added Godseeker");
+                Console.AddLine("Error, platform out of date");
             }
         }
 
         [BindableMethod(name = "Toggle Steel Soul Option", category = "Main Menu Settings")]
         public static void ToggleSteelSoulSelect()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == false)
+            if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 Console.AddLine("This feature is only available on Windows");
                 return;
             }
 
-            if (Platform.Current && Platform.Current.EncryptedSharedData.HasKey("RecPermadeathMode"))
+            if (Platform.Current)
             {
-                Platform.Current.EncryptedSharedData.DeleteKey("RecPermadeathMode");
-                Platform.Current.EncryptedSharedData.Save();
-                Console.AddLine("Deleted Steel Soul");
+                if (GameManager.instance.GetStatusRecordInt("RecPermadeathMode") == 1)
+                {
+                    GameManager.instance.SetStatusRecordInt("RecPermadeathMode", 0);
+                    Console.AddLine("Disabled Steel Soul");
+                }
 
-            }
-            else
-            {
-                GameManager.instance.SetStatusRecordInt("RecPermadeathMode", 1);
-                Platform.Current.EncryptedSharedData.Save();
-                Console.AddLine("Enabled Steel Soul");
+                else
+                {
+                    GameManager.instance.SetStatusRecordInt("RecPermadeathMode", 1);
+                    Console.AddLine("Enabled Steel Soul");
+                }
+
+                GameManager.instance.SaveStatusRecords();
             }
         }
         //Colo 1
