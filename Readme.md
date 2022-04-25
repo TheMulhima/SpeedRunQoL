@@ -1,4 +1,4 @@
-﻿# SpeedRunQoL
+# SpeedRunQoL
 A debug addition that adds new keybinds that are QoL for speedruns.
 Requires Debug v1.4.9-1 or above
 ## Features
@@ -18,3 +18,8 @@ Written by [pseudorandomhk](https://github.com/pseudorandomhk), adds binds for:
 - Dreamgate Invulnerability
 - Reset Quick Map Storage
 - Dupe Active Room
+### Colosseum Start Points
+Written by CC, adds binds to start Colosseums at different preset points. Currently no support for custom presets or Colos 1/2. All waves start after initial crowd cheer.
+Your preset is saved between Colos and save quits.
+### Main Menu Modes
+Written by CC, adds binds to change Main Menu Mode unlocks. Since you can't use binds in the Main Menu, you need to launch a game first and then use them.
