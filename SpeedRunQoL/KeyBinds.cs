@@ -189,27 +189,26 @@ namespace SpeedRunQoL
             Console.AddLine($"Current State is {VisualStateViewer.CurrentViewingState.ToString()}");
         }
         
-                //Team Cherry used a random password generator for these
         [BindableMethod(name = "Toggle Godseeker Option", category = "Main Menu Settings")]
         public static void ToggleGodseekerFileSelect()
         {
-            //Since i'm writing encrypted values I can't guarantee cross platform compatability
+            //Even with cleaner code I don't want to mess up cross platform stuff
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows) == false)
             {
                 Console.AddLine("This feature is only available on Windows");
                 return;
             }
 
-            if (Platform.Current && Platform.Current.SharedData.HasKey("CBTmnPLpdrC6/a8b6NVgIw=="))
+            if (Platform.Current && Platform.Current.EncryptedSharedData.HasKey("RecBossrushMode"))
             {
-                Platform.Current.SharedData.DeleteKey("CBTmnPLpdrC6/a8b6NVgIw==");
-                Platform.Current.SharedData.Save();
+                Platform.Current.EncryptedSharedData.DeleteKey("RecBossrushMode");
+                Platform.Current.EncryptedSharedData.Save();
                 Console.AddLine("Deleted Godseeker");
             }
             else
             {
-                Platform.Current.SharedData.SetString("CBTmnPLpdrC6/a8b6NVgIw==", "ez4OUKupVnBOq3vBeounJQ==");
-                Platform.Current.SharedData.Save();
+                GameManager.instance.SetStatusRecordInt("RecBossrushMode", 1);
+                Platform.Current.EncryptedSharedData.Save();
                 Console.AddLine("Added Godseeker");
             }
         }
@@ -223,30 +222,91 @@ namespace SpeedRunQoL
                 return;
             }
 
-            if (Platform.Current && Platform.Current.SharedData.HasKey("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8="))
+            if (Platform.Current && Platform.Current.EncryptedSharedData.HasKey("RecPermadeathMode"))
             {
-                Platform.Current.SharedData.DeleteKey("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8=");
-                Platform.Current.SharedData.Save();
+                Platform.Current.EncryptedSharedData.DeleteKey("RecPermadeathMode");
+                Platform.Current.EncryptedSharedData.Save();
                 Console.AddLine("Deleted Steel Soul");
 
             }
             else
             {
-                Platform.Current.SharedData.SetString("ZXi0r2fxAmv7+DQMCko4P865Z28I2w0sX9J7e4kY+A8=", "ez4OUKupVnBOq3vBeounJQ==");
-                Platform.Current.SharedData.Save();
-                Console.AddLine("Added Steel Soul");
+                GameManager.instance.SetStatusRecordInt("RecPermadeathMode", 1);
+                Platform.Current.EncryptedSharedData.Save();
+                Console.AddLine("Enabled Steel Soul");
             }
+        }
+        //Colo 1
+        [BindableMethod(name = "(0) Reset Bronze Waves", category = "Colosseum 1")]
+        public static void Colo1Preset0()
+        {
+            ColoBronzeWaveChanger.SetWavePreset(0);
+        }
+
+        [BindableMethod(name = "(1) Aspids", category = "Colosseum 1")]
+        public static void Colo1Preset1()
+        {
+            ColoBronzeWaveChanger.SetWavePreset(1);
+        }
+
+        [BindableMethod(name = "(2) Baldurs 2", category = "Colosseum 1")]
+        public static void Colo1Preset2()
+        {
+            ColoBronzeWaveChanger.SetWavePreset(2);
+        }
+
+        [BindableMethod(name = "(3) Gruzzers", category = "Colosseum 1")]
+        public static void Colo1Preset3()
+        {
+            ColoBronzeWaveChanger.SetWavePreset(3);
+        }
+
+        [BindableMethod(name = "(4) Zote", category = "Colosseum 1")]
+        public static void Colo1Preset4()
+        {
+            ColoBronzeWaveChanger.SetWavePreset(4);
+        }
+
+        //Colo 2
+        [BindableMethod(name = "(0) Reset Silver Waves", category = "Colosseum 2")]
+        public static void Colo2Preset0()
+        {
+            ColoSilverWaveChanger.SetWavePreset(0);
+        }
+
+        [BindableMethod(name = "(1) Hoppers", category = "Colosseum 2")]
+        public static void Colo2Preset1()
+        {
+            ColoSilverWaveChanger.SetWavePreset(1);
+        }
+
+        [BindableMethod(name = "(2) Grub Mimic", category = "Colosseum 2")]
+        public static void Colo2Preset2()
+        {
+            ColoSilverWaveChanger.SetWavePreset(2);
+        }
+
+        [BindableMethod(name = "(3) Obbles", category = "Colosseum 2")]
+        public static void Colo2Preset3()
+        {
+            ColoSilverWaveChanger.SetWavePreset(3);
+        }
+
+        [BindableMethod(name = "(4) Oblobbles", category = "Colosseum 2")]
+        public static void Colo2Preset4()
+        {
+            ColoSilverWaveChanger.SetWavePreset(4);
         }
 
         //Colo 3 Wave Presets, see ColoGoldWavechanger.cs
 
-        [BindableMethod(name = "(0) Reset Waves (0)", category = "Colosseum 3")]
+        [BindableMethod(name = "(0) Reset Gold Waves", category = "Colosseum 3")]
         public static void Colo3Preset0()
         {
             ColoGoldWaveChanger.SetWavePreset(0);
         }
 
-        [BindableMethod(name = "(1) Frogs 1", category = "Colosseum 3")]
+        [BindableMethod(name = "(1) Frogs", category = "Colosseum 3")]
         public static void Colo3Preset1()
         {
             ColoGoldWaveChanger.SetWavePreset(1);
@@ -281,8 +341,6 @@ namespace SpeedRunQoL
         {
             ColoGoldWaveChanger.SetWavePreset(6);
         }
-
-
 
 
 

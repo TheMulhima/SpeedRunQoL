@@ -9,11 +9,11 @@ using MonoMod.Utils;
 namespace SpeedRunQoL.Functionality
 
 {
-	public class ColoGoldWaveChanger
+	public class ColoSilverWaveChanger
 	{
 		//Wave Preset isn't currently implemented in any useful way but could be
 		private static int WavePreset = 0;
-		private static int MaxPresets = 6;
+		private static int MaxPresets = 4;
 
 		public static void SetWavePreset(int PresetNumber)
 		{
@@ -33,9 +33,9 @@ namespace SpeedRunQoL.Functionality
 
 			else if (PresetNumber == 0)
 			{
-				UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= SetColoGoldWavePreset;
+				UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= SetColoSilverWavePreset;
 				WavePreset = PresetNumber;
-				Console.AddLine("Colo 3 Presets Off, reload room");
+				Console.AddLine("Colo 2 Presets Off, reload room");
 			}
 
 			else
@@ -49,34 +49,24 @@ namespace SpeedRunQoL.Functionality
 						Console.AddLine("Error, no preset selected");
 						break;
 
-					//Frogs 1
+					//Hoppers
 					case 1:
-						WaveStateName = "Wave 9";
+						WaveStateName = "Hopper Arena";
 						break;
 
-					//Sanctum
+					//Mimic Grub
 					case 2:
-						WaveStateName = "Wave 22";
+						WaveStateName = "Wave 20";
 						break;
 
-					//Mawlurks
+					//Obbles
 					case 3:
-						WaveStateName = "Wave 30";
+						WaveStateName = "Reset 4";
 						break;
 
-					//Floorless
+					//Oblobbles
 					case 4:
-						WaveStateName = "GC Pause 1";
-						break;
-
-					//Final Waves
-					case 5:
-						WaveStateName = "Reset 6";
-						break;
-
-					//GodTamer
-					case 6:
-						WaveStateName = "Lancer Pause";
+						WaveStateName = "Arena Final Obble";
 						break;
 
 					default:
@@ -87,30 +77,27 @@ namespace SpeedRunQoL.Functionality
 
 				//if you're already in colos, we need you to reload to avoid messing terrain up and duping waves
 				WavePreset = PresetNumber;
-				UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SetColoGoldWavePreset;
-				Console.AddLine("Colo Preset " + WavePreset + " Started, please load Colo 3");
+				UnityEngine.SceneManagement.SceneManager.activeSceneChanged += SetColoSilverWavePreset;
+				Console.AddLine("Colo Preset " + WavePreset + " Started, please load Colo 2");
 			}
 		}
 
 
 		private static string WaveStateName = "Wave 1";
 
-		private static string ColoGoldWaveScene = "Room_Colosseum_Gold";
-		private static void SetColoGoldWavePreset(Scene sceneFrom, Scene sceneTo) => SetColoGoldWavePreset(sceneTo.name);
-		private static void SetColoGoldWavePreset(string NextSceneName)
+		private static string ColoSilverWaveScene = "Room_Colosseum_Silver";
+		private static void SetColoSilverWavePreset(Scene sceneFrom, Scene sceneTo) => SetColoSilverWavePreset(sceneTo.name);
+		private static void SetColoSilverWavePreset(string NextSceneName)
 		{
-			if (NextSceneName == ColoGoldWaveScene)
+			if (NextSceneName == ColoSilverWaveScene)
 			{
-				GameManager.instance.StartCoroutine(ColoGoldWavePresetCoro(NextSceneName));
+				GameManager.instance.StartCoroutine(ColoSilverWavePresetCoro(NextSceneName));
 			}
 		}
 
-		private static IEnumerator ColoGoldWavePresetCoro(string activeScene)
+		private static IEnumerator ColoSilverWavePresetCoro(string activeScene)
 		{
-			Console.AddLine("e");
 			yield return new WaitUntil(() => UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == activeScene);
-
-
 
 			// Find Colo 3, the wave managment fsm, change idle to send the event to a specific wave corresponding to the preset
 			Console.AddLine("debugging, fsm search start");
@@ -124,7 +111,7 @@ namespace SpeedRunQoL.Functionality
 		}
 
 		public static void debugwaves()
-        {
+		{
 			GameObject waveController = GameObject.Find("Colosseum Manager");
 			PlayMakerFSM fsm = waveController.LocateMyFSM("Battle Control");
 			fsm.SendEvent("WAVE END");

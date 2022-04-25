@@ -76,7 +76,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Functionality\ColoBronzeWaveChanger.cs" />
     <Compile Include="Functionality\ColoGoldWaveChanger.cs" />
+    <Compile Include="Functionality\ColoSilverWaveChanger.cs" />
     <Compile Include="Functionality\ForceUumuuExtraAttack.cs" />
     <Compile Include="Functionality\PositionSaveState.cs" />
     <Compile Include="Functionality\VisualStateViewer.cs" />
