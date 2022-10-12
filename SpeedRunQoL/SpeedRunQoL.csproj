@@ -10,7 +10,7 @@
     <RootNamespace>SpeedRunQoL</RootNamespace>
     <AssemblyName>SpeedRunQoL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <HollowKnightFolder>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\</HollowKnightFolder>
+    <HollowKnightFolder>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\</HollowKnightFolder>
     <ModsDirectory>C:\Program Files (x86)\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\Mods\DebugMod</ModsDirectory>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,22 +35,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(HollowKnightFolder)\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="DebugMod">
-      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\Mods\DebugMod\DebugMod.dll</HintPath>
+      <HintPath>$(ModsDirectory)\DebugMod.dll</HintPath>
     </Reference>
     <Reference Include="MMHOOK_PlayMaker">
-      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\MMHOOK_PlayMaker.dll</HintPath>
+      <HintPath>$(HollowKnightFolder)\MMHOOK_PlayMaker.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
-      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\Mono.Cecil.dll</HintPath>
+      <HintPath>$(HollowKnightFolder)\Mono.Cecil.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\MonoMod.RuntimeDetour.dll</HintPath>
+      <HintPath>$(HollowKnightFolder)\MonoMod.RuntimeDetour.dll</HintPath>
     </Reference>
     <Reference Include="MonoMod.Utils">
-      <HintPath>..\..\..\..\..\..\..\acewo\Documents\Hollow Knight Modding\Mods\Standard API\Managed\MonoMod.Utils.dll</HintPath>
+      <HintPath>$(HollowKnightFolder)\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(HollowKnightFolder)\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
