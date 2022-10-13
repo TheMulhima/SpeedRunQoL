@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections;
-using System.ComponentModel.Design;
 using System.Linq;
-using DebugMod;
 using Modding;
-using MonoMod;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using SpeedRunQoL.Functionality;
 
 namespace SpeedRunQoL
 {
     //debug doesnt do any of the dll loading so the mod needs to inherit from "Mod" so the modding api loads it
     public class SpeedRunQoL: Mod
     {
-        public override string GetVersion() => "v0.55";
+        public override string GetVersion() => "v0.56"; // shoutouts
         internal static SpeedRunQoL instance { get; private set; }
         public override void Initialize()
         {
@@ -26,7 +21,9 @@ namespace SpeedRunQoL
                 AddStuffToDebug();
             };
 
-            ModHooks.HeroUpdateHook += Functionality.VisualStateViewer.CheckForFlashConditions;
+            ModHooks.HeroUpdateHook += VisualStateViewer.CheckForFlashConditions;
+
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += (s, _) => LoadScreenBlankerControl.DisableRandomBlankers(s);
         }
 
         //making this a different function is the way that the mod doesnt fail to load when debug isnt downloaded.

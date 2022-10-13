@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using DebugMod;
 using DebugMod.Hitbox;
+using GlobalEnums;
+using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
 using Modding;
 using Modding.Converters;
 using Newtonsoft.Json;
@@ -180,6 +184,32 @@ namespace SpeedRunQoL
                 settings.ShowHitBoxes = 0;
                 yield return new WaitUntil(() => HitboxViewer.State == 0);
                 settings.ShowHitBoxes = cs;
+            }
+        }
+
+        [BindableMethod(name = "Toggle Load Screens", category = "Visual")]
+        public static void ToggleLoadScreens()
+        {
+            LoadScreenBlankerControl.hidingLoadScreens = !LoadScreenBlankerControl.hidingLoadScreens;
+            GameCameras.instance.hudCamera.transform.Find("2dtk Blanker").gameObject.LocateMyFSM("Blanker Control")
+                .enabled = !LoadScreenBlankerControl.hidingLoadScreens;
+            Console.AddLine($"{(LoadScreenBlankerControl.hidingLoadScreens ? "Hiding" : "Showing")} load screens");
+        }
+
+        private static bool hidingSceneBorders;
+
+        [BindableMethod(name = "Toggle Scene Borders", category = "Visual")]
+        public static void ToggleSceneBorders()
+        {
+            hidingSceneBorders = !hidingSceneBorders;
+            Console.AddLine($"{(hidingSceneBorders ? "Hiding" : "Showing")} scene borders");
+            // Clearing border list in ModHooks.DrawBlackBordersHook doesn't work because the borders still get instantiated
+            // Just disable the renderer instead
+            GameManager.instance.sm.borderPrefab.GetComponent<SpriteRenderer>().enabled = !hidingSceneBorders;
+            foreach (var borderRenderer in Object.FindObjectsOfType<SpriteRenderer>()
+                         .Where(sr => sr.gameObject.name == "SceneBorder(Clone)"))
+            {
+                borderRenderer.enabled = !hidingSceneBorders;
             }
         }
 

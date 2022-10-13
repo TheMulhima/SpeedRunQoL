@@ -102,7 +102,7 @@
             <param name="gos">The game objects to iterate over.</param>
             <returns>The number of renderers disabled.</returns>
         </member>
-        <member name="M:DebugMod.MethodHelpers.VisualMaskHelper.ProperlyDisableVignette">
+        <member name="M:DebugMod.MethodHelpers.VisualMaskHelper.DisableVignette(System.Boolean)">
             <summary>
             Disable the Vignette, as well as all of the renderers in its children
             </summary>
