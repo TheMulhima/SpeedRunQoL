@@ -1,15 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using UnityEngine;
-using System.Reflection;
-using static DebugMod.EnemiesPanel;
-using System;
-using System.Collections;
 using DebugMod;
+using UnityEngine;
 using UnityEngine.SceneManagement;
-using Console = DebugMod.Console;
-using Object = UnityEngine.Object;
 
 namespace SpeedRunQoL.Functionality
 {
@@ -77,7 +70,7 @@ namespace SpeedRunQoL.Functionality
                 int value8 = hm.hp;
                 gameObject2.SetActive(true);
                 
-                data.Add(new EnemyData(value8, hm, component, DebugMod.EnemiesPanel.parent, gameObject2));
+                data.Add(new EnemyData(value8, hm, component, EnemiesPanel.parent, gameObject2));
             }
             return data;
         }
@@ -107,7 +100,7 @@ namespace SpeedRunQoL.Functionality
                 {
                         HealthManager hm = enemy.GetComponent<HealthManager>();
 
-                        if (hm && enemy.gameObject.activeSelf && !DebugMod.EnemiesPanel.Ignore(enemy.gameObject.name))
+                        if (hm && enemy.gameObject.activeSelf && !EnemiesPanel.Ignore(enemy.gameObject.name))
                         {
                             Component component = enemy.gameObject.GetComponent<tk2dSprite>();
                             if (component == null)
@@ -116,7 +109,7 @@ namespace SpeedRunQoL.Functionality
                             }
 
                             int value = hm.hp;
-                            ret.Add(new EnemyData(value, hm, component, DebugMod.EnemiesPanel.parent, enemy.gameObject));
+                            ret.Add(new EnemyData(value, hm, component, EnemiesPanel.parent, enemy.gameObject));
                         }
                 }
             }

@@ -1,22 +1,12 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using DebugMod;
 using DebugMod.Hitbox;
-using GlobalEnums;
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-using Modding;
-using Modding.Converters;
-using Newtonsoft.Json;
 using SpeedRunQoL.Functionality;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Console = DebugMod.Console;
-using Object = UnityEngine.Object;
 using USceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace SpeedRunQoL
