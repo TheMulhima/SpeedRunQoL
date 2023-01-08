@@ -76,13 +76,13 @@ namespace SpeedRunQoL
         [BindableMethod(name = "Quickslot (load duped)", category = "Savestates")]
         public static void LoadStateDuped()
         {
-            LoadState(new object[] { 0, true }); //SaveStateType.MEMORY
+            LoadState(new object[] { 0, true, null }); //SaveStateType.MEMORY, no cancel bind name
         }
 
         [BindableMethod(name = "Load duped state from file", category = "Savestates")]
         public static void LoadFromFileDuped()
         {
-            LoadState(new object[] { 2, true }); //SaveStateType.SKIPONE
+            LoadState(new object[] { 2, true, "Load duped state from file" }); //SaveStateType.SKIPONE
         }
 
         private static void LoadState(object[] args)
