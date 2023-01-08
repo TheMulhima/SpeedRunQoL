@@ -64,13 +64,13 @@ namespace SpeedRunQoL.Functionality
             {
                 GameObject gameObject2 = Object.Instantiate(tempEd.gameObject, tempEd.gameObject.transform.position, tempEd.gameObject.transform.rotation);
                 
-                Component component = gameObject2.GetComponent<tk2dSprite>();
+                tk2dSprite sprite = gameObject2.GetComponent<tk2dSprite>();
                 HealthManager hm = gameObject2.GetComponent<HealthManager>();
                 
                 int value8 = hm.hp;
                 gameObject2.SetActive(true);
                 
-                data.Add(new EnemyData(value8, hm, component, EnemiesPanel.parent, gameObject2));
+                data.Add(new EnemyData(value8, hm, sprite, EnemiesPanel.parent, gameObject2));
             }
             return data;
         }
@@ -102,14 +102,14 @@ namespace SpeedRunQoL.Functionality
 
                         if (hm && enemy.gameObject.activeSelf && !EnemiesPanel.Ignore(enemy.gameObject.name))
                         {
-                            Component component = enemy.gameObject.GetComponent<tk2dSprite>();
-                            if (component == null)
+                            tk2dSprite sprite = enemy.gameObject.GetComponent<tk2dSprite>();
+                            if (sprite == null)
                             {
-                                component = null;
+                                sprite = null;
                             }
 
                             int value = hm.hp;
-                            ret.Add(new EnemyData(value, hm, component, EnemiesPanel.parent, enemy.gameObject));
+                            ret.Add(new EnemyData(value, hm, sprite, EnemiesPanel.parent, enemy.gameObject));
                         }
                 }
             }
