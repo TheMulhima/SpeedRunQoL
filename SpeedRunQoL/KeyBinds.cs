@@ -105,7 +105,7 @@ namespace SpeedRunQoL
                 return;
             }
             
-            saveStateManager.GetType().GetMethod("LoadState", BindingFlags.Instance | BindingFlags.Public)
+            saveStateManager.GetType().GetMethod("LoadSaveState", BindingFlags.Instance | BindingFlags.Public)
                 ?.Invoke(saveStateManager, args);
         }
 
